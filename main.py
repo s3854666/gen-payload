@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 Just something to make my life easier :)
 PS. This is my attempt at trying to make code as unreadable as possible
