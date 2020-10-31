@@ -4,7 +4,7 @@ Just something to make my life easier :)
 PS. This is my attempt at trying to make code as unreadable as possible
 """
 import netifaces as ni
-from colorama import Fore, Style
+from colorama import Fore
 # from pwn import *
 
 type_of_payloads = ['Reverse Shell', 'Shellcode']
@@ -34,7 +34,7 @@ def rev_payload(ip: str, error: bool = False):
     print("============= Payload ===============")
     print(payloads[chosen_payload]) if chosen_payload < len(payload_types) else rev_payload(ip=ip, error=True)
     
-"""
+"""The following function will let the user choose an interface
 
 :param error: Set to false by default and is used to print the error message
 :type error: bool
