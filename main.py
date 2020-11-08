@@ -34,6 +34,7 @@ def rev_payload(ip: str, error: bool = False):
     print(Fore.MAGENTA + "============= Payload ===============")
     print(payloads[chosen_payload]) if chosen_payload < len(payload_types) else rev_payload(ip=ip, error=True)
     print("Payload copied to the clipboard")
+    pyperclip.copy(payloads[chosen_payload]) if chosen_payload < len(payload_types) else rev_payload(ip=ip, error=True)
 
 """The following function will let the user choose an interface
 
