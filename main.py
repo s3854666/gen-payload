@@ -7,7 +7,6 @@ import netifaces as ni
 from colorama import Fore
 import argparse
 
-type_of_payloads = ['Reverse Shell', 'Shellcode']
 
 def main():
     global args
@@ -21,7 +20,9 @@ def main():
         listh()
     else:
         rev_payload()
-    
+
+"""Just list out the interfaces or the payloads
+"""
 def listh():
     if args.list == "payloads":
         payload_types = ["netcat", "old-netcat [more reliable]", "bash", "python3", "php", "perl", "java", "ruby"]
